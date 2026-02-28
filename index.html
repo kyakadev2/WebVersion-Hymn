@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {
+        console.error('Theme preload error:', e);
+      }
+    })();
+  </script>
+  <style>
+    hr {
+      margin: 1vh 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      width:100%;
+      margin: 0;
+    }
+    
+.head {
+  margin-bottom:0;
+  height: 6vh;
+  width: 100vw;
+  background-color: transparent;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}    
+    .light .head {
+      color: black;
+    }
+    .dark .head {
+      color: white;
+    }
+    .but {
+      margin: 1vh auto;
+      width: 80%;
+      height: 18vh;
+      text-align: center;
+      color: black;
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      border-radius: 1em;
+      box-shadow: 0 00.5em 1em rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-break: break-word;
+    }
+    .but:hover {
+      transform: translateY(-0.5vh);
+      box-shadow: 0 0.7em 11.5em rgba(0,0,0,0.25);
+    }
+    .light .but {
+      color: black;
+    }
+    .light .but:hover {
+      color: white;
+    }
+    .dark .but {
+      box-shadow: 0 0.7em 1.5em rgba(255,255,255,0.08);
+    }
+    .light .but {
+      box-shadow: 0 0.5em 1em rgba(0,0,0,0.15);
+    }
+    .dark .but:hover {
+      color: white;
+    }
+    .but:hover {
+      background: #1aafff;
+      transform: translateY(-00.5vh);
+    }
+    .but:focus {
+      outline: none;
+      box-shadow: 0 0 0 0.4vh rgba(0, 70, 120, 0.5);
+    }
+    .bk-ttl2 {
+      background: transparent;
+      border: none;
+      height: 4.5vh;
+      font-size: 1em;
+      color: black;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      margin:0 ;
+      padding:0;
+    }
+    
+    .alb {
+      margin-top: 1vh;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+      overflow-x: hidden;
+      flex: 1;
+    }
+ 
+.menu-btn {
+  position: absolute;
+  left: 1em;
+  top: 50%;
+  width:fit-content;
+  font-size:1.2em;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.5s;
+  
+}
+    
+    .menu-btn {
+  transition: transform 0.5s;
+  transform-origin: center;
+}
+
+.menu-btn.rotated {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+    .menu-btn:active {
+  background-color: #ccc;
+}
+
+    .menu-panel {
+      position: absolute;
+      top: 6.5vh;
+      left: 0;
+      width: 60%;
+      height: auto;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 1000;
+    }
+    .light .menu-panel {
+      color:#555;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      transition: background-color 0.5s, color 0.5s;
+
+    }
+    
+    .dark .menu-panel {
+      color:#d9d9d9;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #1e2429;
+      transition: background-color 0.5s, color 0.5s;
+      
+    }
+    
+        .light .menu-panel {
+            color:#555;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      transition: background-color 0.5s, color 0.5s;
+
+    }
+    
+    
+    .menu-panel.show {
+      display: block;
+    }
+    .menu-panel button {
+      display: block;
+      width: 100%;
+      padding: 1em;
+      border: none;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+    .menu-panel button:hover {
+      background: #f0f0f0;
+    }
+    .dark .menu-panel button:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+  <header class="head">
+    <button class="menu-btn">☰</button>
+    <button class="bk-ttl2">HymnBooks</button>
+    <div class="menu-panel">
+      <button onclick="location.href='about.html'"><span class="info">&#9432;</span> À propos</button>
+      <button class="theme" id='theme' onClick='changeTheme()'>🌙 Changer le thème</button>
+    </div>
+  </header>
+  <hr>
+        <div class="alb">
+            <button class="but" onclick="location.href='NAP.html'">Nyamuhanga Apipawe</button>
+            <button class="but" onclick="location.href='NZW.html'">Nyimbo Za Wokovu</button>
+            <button class="but" onclick="location.href='NZM.html'">Nyimbo Za Mungu</button>
+            <button class="but" onclick="location.href='LAE.html'">Louange À l'Eternel</button>
+            <button class="but" onclick="location.href='baptisth.html'">Baptist Hymnbook</button>
+        </div>
+  <hr>
+  <footer></footer>
+<script>
+  function applyTheme() {
+    const theme = localStorage.getItem('theme');
+    if (theme) {
+      document.body.className = theme;
+    }
+  }
+
+  function toggleTheme() {
+    let currentTheme = document.body.className;
+    let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.body.className = newTheme;
+    localStorage.setItem('theme', newTheme);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+
+    applyTheme();
+
+    const menuBtn = document.querySelector('.menu-btn');
+    const menuPanel = document.querySelector('.menu-panel');
+
+    menuBtn.addEventListener('click', () => {
+      menuPanel.classList.toggle('show');
+    });
+
+    menuBtn.addEventListener('click', function () {
+      this.classList.toggle('rotated');
+    });
+
+    document
+      .getElementById('theme')
+      .addEventListener('click', toggleTheme);
+
+    function closeIfOutside(event) {
+
+      if (
+        menuPanel.classList.contains('show') &&
+        !menuPanel.contains(event.target) &&
+        !menuBtn.contains(event.target)
+      ) {
+        menuPanel.classList.remove('show');
+        menuBtn.classList.remove('rotated');
+      }
+
+    }
+
+    document.addEventListener('click', closeIfOutside);
+
+    document.addEventListener('touchstart', closeIfOutside);
+
+  });
+</script>
+<script src='script.js'></script>
+</body>
+</html>
